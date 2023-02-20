@@ -5,13 +5,14 @@
   - Primary functions of this project:
       + Sign Up / Log In for user.
       + CRUD post for each user.
+      + Read Post
   - Technologies : 
       + HTML/CSS, JS 
       + ReactJS, NodeJS
       + MongoDB
       
 * Guide for install and run this project
-  - For back-end side: npm i -> npm run start
-  - For front-end side : npm i -> npm run dev.
+  - For api: npm i -> npm run start
+  - For client : npm i -> npm run dev.
   
   
