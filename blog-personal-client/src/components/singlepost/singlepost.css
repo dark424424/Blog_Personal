@@ -92,6 +92,16 @@
     outline: none;
 }
 
+.singlePostEnd {
+    display: flex;
+    justify-content: space-between;
+}
+
+.singlePostCategories {
+    margin-top: 20px;
+    padding: 5px;
+}
+
 .singlePostButton {
     border: none;
     width: 100px;
@@ -102,6 +112,17 @@
     cursor: pointer;
     align-self: flex-end;
     margin-top: 20px;
+}
+
+.singlePostCategoriesList {
+    display: flex;
+    font-size: 16px;
+    color: #b39656;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.categoriesItem {
+    margin-left: 6px;
 }
 
 /* .singlePostAuthor {

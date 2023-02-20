@@ -11,6 +11,7 @@ export default function SinglePost() {
     const [post, setPost] = useState({});
     const PF = 'http://localhost:5000/images/';
     const { user } = useContext(Context);
+    const [categories, setCategories] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [updateMode, setUpdateMode] = useState(false);
@@ -22,6 +23,7 @@ export default function SinglePost() {
             setPost(res.data);
             setTitle(res.data.title);
             setDescription(res.data.description);
+            setCategories(res.data.categories);
         };
         getPost();
     }, [path]);
@@ -43,9 +45,20 @@ export default function SinglePost() {
                 username: user.username,
                 title,
                 description,
+                categories,
             });
             setUpdateMode(false);
         } catch (err) {}
+    };
+
+    console.log(categories);
+
+    const handleSelectChange = (event) => {
+        const selectedCategory = event.target.value;
+        if (!categories.includes(selectedCategory)) {
+            const newCategories = [...categories, selectedCategory];
+            setCategories(newCategories);
+        }
     };
 
     return (
@@ -92,11 +105,39 @@ export default function SinglePost() {
                 ) : (
                     <p className="singlePostDescription">{description}</p>
                 )}
-                {post.username === user?.username && (
-                    <button className="singlePostButton" onClick={handleUpdate}>
-                        Update
-                    </button>
-                )}
+
+                <div className="singlePostEnd">
+                    <div className="singlePostCategories">
+                        {updateMode ? (
+                            <>
+                                <select name="" onChange={(e) => handleSelectChange(e)}>
+                                    <option value="">--Choose Category--</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Sport">Sport</option>
+                                    <option value="Lifestyle">Lifestyle</option>
+                                    <option value="Ranking">Ranking</option>
+                                    <option value="Game">Game</option>
+                                    <option value="Mystery">Mystery</option>
+                                </select>
+                            </>
+                        ) : (
+                            <ul className="singlePostCategoriesList">
+                                About :
+                                {categories.map((c, index) => (
+                                    <span className="categoriesItem" key={index}>
+                                        {c}
+                                    </span>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
+
+                    {post.username === user?.username && (
+                        <button className="singlePostButton" onClick={handleUpdate}>
+                            Update
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     );

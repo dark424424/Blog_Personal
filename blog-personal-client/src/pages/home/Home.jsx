@@ -6,6 +6,7 @@ import './home.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router';
+import Footer from '../../components/footer/Footer';
 
 export default function Home() {
     const [posts, setPosts] = useState([]);
@@ -41,6 +42,7 @@ export default function Home() {
                 </div>
                 <SideBar />
             </div>
+            <Footer/>
         </>
     );
 }

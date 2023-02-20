@@ -31,7 +31,7 @@ export default function SideBar() {
                 <div className="sidebarTitle">CATEGORIES</div>
                 <ul className="sidebarList">
                     {cats.map((c, index) => (
-                        <Link to={'/'} className="link sidebarListItem" key={index}>
+                        <Link to={`/?cat=${c.name}`} className="link sidebarListItem" key={index}>
                             <li>{c.name}</li>
                         </Link>
                     ))}
