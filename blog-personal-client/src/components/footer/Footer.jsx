@@ -45,6 +45,7 @@ export default function Footer() {
                 </li>
             </ul>
             <div className="footerAuthor">Design By - Lama Dev</div>
+            <div className="footerCopyRight">Copyright @2023</div>
         </div>
     );
 }

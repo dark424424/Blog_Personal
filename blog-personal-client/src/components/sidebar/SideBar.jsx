@@ -17,14 +17,15 @@ export default function SideBar() {
     return (
         <div className="sidebar">
             <div className="sidebarItem">
-                <div className="sidebarTitle">ABOUT ME</div>
+                <div className="sidebarTitle">ABOUT US</div>
                 <img
                     className="sidebarImg"
                     src="https://t3.ftcdn.net/jpg/05/48/85/94/360_F_548859458_nSIXtT9ML7ksTgjRAOmLsqP3egKc1prC.jpg"
                     alt=""
                 />
                 <p className="sidebarText">
-                    Keep smiling, because life is a beautiful thing and there's so much to smile about. -Marilyn Monroe
+                    “I'll tell you a secret. Old storytellers never die. They disappear into their own story.” - Vera
+                    Nazarian, author
                 </p>
             </div>
             <div className="sidebarItem">

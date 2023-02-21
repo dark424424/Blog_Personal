@@ -51,13 +51,23 @@ export default function SinglePost() {
         } catch (err) {}
     };
 
-    console.log(categories);
+    //console.log(categories);
 
     const handleSelectChange = (event) => {
         const selectedCategory = event.target.value;
-        if (!categories.includes(selectedCategory)) {
+        if (!categories.includes(selectedCategory) && selectedCategory != '') {
             const newCategories = [...categories, selectedCategory];
             setCategories(newCategories);
+        }
+    };
+
+    const handleSelectDelete = (e) => {
+        if (categories.includes(e)) {
+            setCategories(
+                categories.filter((cat) => {
+                    return cat !== e;
+                }),
+            );
         }
     };
 
@@ -108,10 +118,10 @@ export default function SinglePost() {
 
                 <div className="singlePostEnd">
                     <div className="singlePostCategories">
-                        {updateMode ? (
+                        {updateMode && (
                             <>
-                                <select name="" onChange={(e) => handleSelectChange(e)}>
-                                    <option value="">--Choose Category--</option>
+                                <select className="categoriesSelect" name="" onChange={(e) => handleSelectChange(e)}>
+                                    <option value="">--Add Category--</option>
                                     <option value="Music">Music</option>
                                     <option value="Sport">Sport</option>
                                     <option value="Lifestyle">Lifestyle</option>
@@ -119,20 +129,37 @@ export default function SinglePost() {
                                     <option value="Game">Game</option>
                                     <option value="Mystery">Mystery</option>
                                 </select>
+                                {/* <select className="categoriesSelect" name="" onChange={(e) => handleSelectDelete(e)}>
+                                    <option value="">--Delete Category--</option>
+                                    <option value="Music">Music</option>
+                                    <option value="Sport">Sport</option>
+                                    <option value="Lifestyle">Lifestyle</option>
+                                    <option value="Ranking">Ranking</option>
+                                    <option value="Game">Game</option>
+                                    <option value="Mystery">Mystery</option>
+                                </select> */}
                             </>
-                        ) : (
-                            <ul className="singlePostCategoriesList">
-                                About :
-                                {categories.map((c, index) => (
-                                    <span className="categoriesItem" key={index}>
-                                        {c}
-                                    </span>
-                                ))}
-                            </ul>
                         )}
+                        <ul className="singlePostCategoriesList">
+                            About :
+                            {categories.map((c, index) => (
+                                <span className="categoriesItem" key={index}>
+                                    {c}
+                                    {updateMode && (
+                                        <button
+                                            type="submit"
+                                            className="categoriesItemButton"
+                                            onClick={() => handleSelectDelete(c)}
+                                        >
+                                            X
+                                        </button>
+                                    )}
+                                </span>
+                            ))}
+                        </ul>
                     </div>
 
-                    {post.username === user?.username && (
+                    {post.username === user?.username && updateMode && (
                         <button className="singlePostButton" onClick={handleUpdate}>
                             Update
                         </button>

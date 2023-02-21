@@ -84,7 +84,7 @@
     font-size: 18px;
     line-height: 24px;
     text-align: left;
-    height: 200px;
+    height: 50vh;
     border: none;
     background-color: transparent;
 }
@@ -115,6 +115,7 @@
 }
 
 .singlePostCategoriesList {
+    margin-top: 20px;
     display: flex;
     font-size: 16px;
     color: #b39656;
@@ -123,6 +124,25 @@
 
 .categoriesItem {
     margin-left: 6px;
+}
+
+.categoriesSelect {
+    display: flex;
+    justify-content: flex-start;
+    color: lightcoral;
+    font-size: 18px;
+    background-color: transparent;
+    outline: none;
+    border: 1px solid #666;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.categoriesItemButton {
+    margin-left: 4px;
+    background-color: transparent;
+    color: #fbfbfb;
+    cursor: pointer;
 }
 
 /* .singlePostAuthor {
