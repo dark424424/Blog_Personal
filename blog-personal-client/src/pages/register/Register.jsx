@@ -16,16 +16,16 @@ export default function Register() {
             form: '#form-1',
             errorSelector: '.formMessage',
             rules: [
-                Validator.isRequired('#fullname'),
-                Validator.isEmail('#email'),
-                Validator.minLength('#password', 6),
-                Validator.isRequired('#password_confirmation'),
+                Validator.isRequired('#fullname', 'Please fill this field'),
+                Validator.isEmail('#email', 'This field must be a valid email address'),
+                Validator.minLength('#password', 6, 'Password must be at least 6 characters'),
+                Validator.isRequired('#password_confirmation', 'Please fill this field'),
                 Validator.isConfirmed(
                     '#password_confirmation',
                     function () {
                         return document.querySelector('#form-1 #password').value;
                     },
-                    'Mật khẩu nhập lại không chính xác.',
+                    'Password confirmation must exactly match with the password',
                 ),
             ],
             onSubmit: function (data) {
@@ -51,8 +51,6 @@ export default function Register() {
             }
         }
     };
-
-    console.log(isValid);
 
     return (
         <div className="register">

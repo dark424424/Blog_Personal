@@ -19,10 +19,21 @@
     flex-direction: column;
 }
 
-.loginForm > label {
+.loginFormInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.loginFormInput > label {
     color: #fbfbfb;
     font-size: 20px;
     margin: 10px 0;
+}
+
+.loginFormInput.invalid .loginFormMessage {
+    margin-top: 4px;
+    color: #f33a58;
+    font-size: 10px;
 }
 
 .loginInput {

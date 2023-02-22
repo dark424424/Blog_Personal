@@ -13,7 +13,7 @@ export default function Home() {
     const { search } = useLocation();
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(4);
+    const [postsPerPage, setPostsPerPage] = useState(6);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -42,7 +42,7 @@ export default function Home() {
                 </div>
                 <SideBar />
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 }
