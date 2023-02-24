@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
 import { useContext } from 'react';
 import { Context } from './context/Context.jsx';
+import About from './pages/about/About.jsx';
 
 function App() {
     const { user } = useContext(Context);
@@ -32,6 +33,9 @@ function App() {
                     </Route>
                     <Route path="/write">{user ? <Write /> : <Login />}</Route>
                     <Route path="/settings">{user ? <Settings /> : <Login />}</Route>
+                    <Route path="/about">
+                        <About />
+                    </Route>
                 </Switch>
             </div>
         </Router>

@@ -98,7 +98,17 @@
     align-items: center;
     padding: 10px 20px 0 20px;
     background-color: rgb(16, 16, 15);
-    transition: 600ms;
+}
+
+@keyframes fall {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+    100% {
+        top: 50px;
+        opacity: 1;
+    }
 }
 
 /* .topMobileList :first-child {
@@ -125,6 +135,7 @@
 
 .navActive {
     display: flex !important;
+    animation: fall 0.4s linear forwards;
 }
 
 .topMobileListImage {

@@ -9,6 +9,7 @@ export default function TopBar() {
     const PF = 'http://localhost:5000/images/';
     const [clicked, setClicked] = useState(false);
     const listRef = useRef();
+    console.log(listRef);
 
     const handleClick = () => {
         listRef.current.classList.toggle('navActive');
@@ -38,7 +39,7 @@ export default function TopBar() {
                         <Link to={`/`}>HOME</Link>
                     </li>
                     <li className="topListItem">
-                        <Link to={`/`}>ABOUT</Link>
+                        <Link to={`/about`}>ABOUT</Link>
                     </li>
                     <li className="topListItem">
                         <Link to={`/`}>CONTACT</Link>
@@ -98,7 +99,7 @@ export default function TopBar() {
                         <Link to={`/`}>HOME</Link>
                     </li>
                     <li className="topMobileListItem">
-                        <Link to={`/`}>ABOUT</Link>
+                        <Link to={`/about`}>ABOUT</Link>
                     </li>
                     <li className="topMobileListItem">
                         <Link to={`/`}>CONTACT</Link>

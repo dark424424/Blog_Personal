@@ -6,6 +6,7 @@ const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
 const postRoute = require('./routes/posts');
 const categoriesRoute = require('./routes/categories');
+const commentRoute = require('./routes/comments');
 const multer = require('multer');
 const path = require('path');
 
@@ -41,6 +42,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/categories', categoriesRoute);
+app.use('/api/comments', commentRoute);
 
 app.use('/lama', (req, res) => {
     console.log('this main url');
