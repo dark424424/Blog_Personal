@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import './singlepost.css';
 import { Context } from '../../context/Context';
+import Comment from '../comment/Comment';
 
 export default function SinglePost() {
     const location = useLocation();
@@ -15,6 +16,14 @@ export default function SinglePost() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [updateMode, setUpdateMode] = useState(false);
+    const [comments, setComments] = useState([]);
+    const [commentInfo, setCommentInfo] = useState('');
+    const [postID, setPostID] = useState('');
+
+    const getComments = async () => {
+        const res = await axios.get(`/api/comments/?postId=${postID}`);
+        setComments(res.data);
+    };
 
     useEffect(() => {
         const getPost = async () => {
@@ -23,9 +32,16 @@ export default function SinglePost() {
             setTitle(res.data.title);
             setDescription(res.data.description);
             setCategories(res.data.categories);
+            setPostID(res.data._id);
         };
         getPost();
     }, [path]);
+
+    useEffect(() => {
+        if (postID !== '') {
+            getComments();
+        }
+    }, [postID, path]);
 
     const handleDelete = async () => {
         try {
@@ -50,6 +66,22 @@ export default function SinglePost() {
         } catch (err) {}
     };
 
+    const handleCreateComment = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post('/api/comments/', {
+                username: user.username,
+                posttitle: title,
+                desc: commentInfo,
+                postId: postID,
+            });
+            getComments();
+            setCommentInfo('');
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     //console.log(categories);
 
     const handleSelectChange = (event) => {
@@ -68,6 +100,14 @@ export default function SinglePost() {
                 }),
             );
         }
+    };
+
+    const handleDeleteComment = (commentId) => {
+        setComments((prevComments) => prevComments.filter((comment) => comment._id !== commentId));
+    };
+
+    const handleUpdateComment = (commentText) => {
+        getComments();
     };
 
     return (
@@ -128,15 +168,6 @@ export default function SinglePost() {
                                     <option value="Game">Game</option>
                                     <option value="Mystery">Mystery</option>
                                 </select>
-                                {/* <select className="categoriesSelect" name="" onChange={(e) => handleSelectDelete(e)}>
-                                    <option value="">--Delete Category--</option>
-                                    <option value="Music">Music</option>
-                                    <option value="Sport">Sport</option>
-                                    <option value="Lifestyle">Lifestyle</option>
-                                    <option value="Ranking">Ranking</option>
-                                    <option value="Game">Game</option>
-                                    <option value="Mystery">Mystery</option>
-                                </select> */}
                             </>
                         )}
                         <ul className="singlePostCategoriesList">
@@ -163,6 +194,38 @@ export default function SinglePost() {
                             Update
                         </button>
                     )}
+                </div>
+
+                <div className="singlePostComment">
+                    <div className="singlePostCommentLength">{comments.length} Comments</div>
+                    {user && (
+                        <>
+                            <textarea
+                                className="singlePostCommentInput"
+                                placeholder="Write Your Comment Here"
+                                value={commentInfo}
+                                onChange={(e) => setCommentInfo(e.target.value)}
+                            ></textarea>
+                            <button className="SinglePostCommentBtn singlePostButton" onClick={handleCreateComment}>
+                                Comment
+                            </button>
+                        </>
+                    )}
+                    <ul className="singlePostCommentList">
+                        {comments.length > 0 && (
+                            <>
+                                {comments.map((c, index) => (
+                                    <Comment
+                                        comment={c}
+                                        key={index}
+                                        onDelete={handleDeleteComment}
+                                        onUpdate={handleUpdateComment}
+                                        postId={post._id}
+                                    />
+                                ))}
+                            </>
+                        )}
+                    </ul>
                 </div>
             </div>
         </div>

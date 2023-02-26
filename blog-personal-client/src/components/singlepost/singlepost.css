@@ -145,6 +145,42 @@
     cursor: pointer;
 }
 
+.singlePostComment {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.singlePostCommentLength {
+    display: flex;
+    color: #fbfbfb;
+    font-size: 30px;
+    margin-left: 30px;
+}
+
+.singlePostCommentInput {
+    outline: transparent;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    color: lightcoral;
+    font-size: 16px;
+}
+
+.SinglePostCommentBtn {
+    margin-top: 20px;
+    height: 30px;
+    width: 100px;
+}
+
+.singlePostCommentList {
+    display: flex;
+    flex-direction: column;
+}
+
 /* .singlePostAuthor {
 }
 

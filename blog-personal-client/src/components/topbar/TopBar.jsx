@@ -9,7 +9,6 @@ export default function TopBar() {
     const PF = 'http://localhost:5000/images/';
     const [clicked, setClicked] = useState(false);
     const listRef = useRef();
-    console.log(listRef);
 
     const handleClick = () => {
         listRef.current.classList.toggle('navActive');

@@ -14,6 +14,10 @@ const CommentSchema = new moongoose.Schema(
             type: String,
             required: true,
         },
+        postId: {
+            type: String,
+            required: true,
+        },
     },
     { timestamps: true },
 );

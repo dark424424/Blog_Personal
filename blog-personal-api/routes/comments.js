@@ -16,15 +16,24 @@ router.post('/', async (req, res, next) => {
     }
 });
 
-// Get comment by post
-router.post('/', async (req, res, next) => {
-    const newComment = new Comment(req.body);
+// delete comment
+
+router.delete('/:id', async (req, res, next) => {
     try {
-        const savedComment = await newComment.save();
-        res.status(200).json(savedComment);
+        const comment = await Comment.findById(req.params.id);
+        if (comment.username === req.body.username) {
+            try {
+                await comment.delete();
+
+                res.status(200).json('Comment had been deleted');
+            } catch (err) {
+                res.status(500).json(err);
+            }
+        } else {
+            res.status(404).json('You can only delete your comment');
+        }
     } catch (err) {
         res.status(500).json(err);
-        // console.log(err);
     }
 });
 
@@ -58,16 +67,17 @@ router.put('/:id', async (req, res, next) => {
 router.get('/', async (req, res) => {
     const postTitle = req.query.title;
     const username = req.query.user;
+    const postId = req.query.postId;
     try {
         let comments;
         if (username) {
             comments = await Comment.find({ username });
-        } else if (postTitle) {
+        } else if (postId) {
             comments = await Comment.find({
-                posttitle: postTitle,
-            });
+                postId: postId,
+            }).sort({ updatedAt: -1 });
         } else {
-            comments = await Comment.find();
+            comments = await Comment.find().sort({ updatedAt: -1 });
         }
         res.status(200).json(comments);
     } catch (err) {
