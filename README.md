@@ -6,6 +6,7 @@
       + Sign Up / Log In for user.
       + CRUD post for each user.
       + Read Post
+      + Comment system
   - Technologies : 
       + HTML/CSS, JS 
       + ReactJS, NodeJS
